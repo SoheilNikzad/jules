@@ -1,0 +1,11 @@
+{
+  "chainId": "0x4705",
+  "chainName": "ŘǍǍǨȞ",
+  "nativeCurrency": {
+    "name": "ŘǍǍǨȞ Coin",
+    "symbol": "ǨȞǍǍŘ",
+    "decimals": 18
+  },
+  "rpcUrls": ["http://127.0.0.1:8545"],
+  "blockExplorerUrls": [""]
+}
