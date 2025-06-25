@@ -122,6 +122,33 @@
 
     <pre id="output"></pre>
 
+    <!-- Minting Section - Initially Hidden -->
+    <div id="mintingSection" style="display: none; margin-top: 2rem; border-top: 1px solid var(--color-border); padding-top: 1rem;">
+      <h2>Mint New NFT</h2>
+      <p>For Collection: <strong id="collectionContractAddress"></strong></p>
+      <p>Next Token ID to Mint: <strong id="nextTokenIdDisplay">Loading...</strong></p>
+
+      <label for="nftName">NFT Name:</label>
+      <input type="text" id="nftName" placeholder="e.g. Awesome NFT #1" />
+
+      <label for="nftDescription">NFT Description:</label>
+      <textarea id="nftDescription" placeholder="Describe your unique NFT"></textarea>
+
+      <label for="nftImageUrl">NFT Image URL:</label>
+      <input type="text" id="nftImageUrl" placeholder="https://example.com/your-nft-image.png" />
+
+      <button id="generateMetadataBtn" style="margin-top: 1rem;">1. Generate Metadata JSON</button>
+      <label for="metadataJsonOutput">Copy the JSON below and upload it to IPFS (e.g., using Pinata.cloud):</label>
+      <textarea id="metadataJsonOutput" rows="5" readonly placeholder="Metadata JSON will appear here..."></textarea>
+
+      <label for="nftMetadataIpfsUrl">IPFS URL of Metadata JSON:</label>
+      <input type="text" id="nftMetadataIpfsUrl" placeholder="ipfs://YourMetadataCID_or_full_https_gateway_URL" />
+
+      <button id="mintNftBtn" style="margin-top: 1rem;">2. Mint This NFT</button>
+      <pre id="mintOutput"></pre>
+    </div>
+    <!-- End Minting Section -->
+
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
     <script defer src="main.js"></script>
   </div>
