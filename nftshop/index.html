@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TokenShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0d111c;
+      --color-panel: #1c2230;
+      --color-border: #2e374a;
+      --color-primary: #f7931a; /* Bitcoin Orange */
+      --color-muted: #94a3b8;
+      --color-text: #ffffffcc;
+    }
+
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: var(--color-panel);
+      padding: 2rem;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      font-family: 'Comfortaa', sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: white;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.25rem;
+      font-weight: 500;
+    }
+
+    input, textarea, select, .fake-upload, button {
+      background: #0f172a;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      color: white;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Comfortaa', sans-serif;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .fake-upload {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      opacity: 0.5;
+    }
+
+    .toggle {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0.5;
+    }
+
+    .note {
+      color: #facc15;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      margin-top: 1.2rem;
+      border: none;
+      border-radius: 12px;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 1.5rem;
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Token Shop</h1>
+
+    <button id="connectBtn"> Connect Wallet</button>
+    <p id="status">Waiting for connection...</p>
+    <input type="text" id="yourWallet" readonly />
+
+    <label for="name">Token Name:</label>
+    <input type="text" id="name" placeholder="e.g. MyToken" />
+
+    <label for="symbol">Token Symbol:</label>
+    <input type="text" id="symbol" placeholder="e.g. MTK" />
+
+    <label for="description">Description:</label>
+    <textarea id="description" placeholder="(disabled)" disabled></textarea>
+
+    <label for="image">Image or GIF:</label>
+    <div class="fake-upload" disabled>
+      <span>Drag and drop an image or GIF</span>
+      <button disabled>Select a file</button>
+    </div>
+    
+    <label for="decimals">Decimals (fixed at 18):</label>
+    <input type="number" id="decimals" value="18" readonly />
+
+    <label for="supply">Total Supply:</label>
+    <input type="number" id="supply" placeholder="e.g. 1000000" />
+
+    <div class="toggle">
+      <label for="lp-share">Creator LP fee share:</label>
+      <input type="checkbox" id="lp-share" disabled />
+    </div>
+
+    <div class="toggle">
+      <label for="more-options">Socials & more options:</label>
+      <select id="more-options" disabled>
+        <option value="">(coming soon)</option>
+      </select>
+    </div>
+
+    <p class="note">Note: token data can’t be changed after creation</p>
+
+    <button id="createToken">Sign to Create token</button>
+
+    <pre id="output"></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+    <script defer src="main.js"></script>
+  </div>
+</body>
+</html>
