@@ -167,7 +167,8 @@ function resetAppUI() {
     currentUserAddress = null;
     ethersProvider = null;
     ethersSigner = null;
-    localEncryptionKey = null;
+    // localEncryptionKey = null; // Removed
+    webCryptoEncryptionKey = null; // Ensure WebCrypto key is also reset
 
     userAddressSpan.textContent = '';
     networkNameSpan.textContent = '';
@@ -343,8 +344,8 @@ async function handleSendMessage() {
 }
 
 async function saveMessageToLocalCache(chatPartnerAddress, message) {
-    if (!localEncryptionKey) {
-        console.warn("Cannot save message, local encryption key not available.");
+    if (!webCryptoEncryptionKey) { // CHECK WEBCRYPTO KEY
+        console.warn("Cannot save message, WebCrypto encryption key not available.");
         return;
     }
     const normalizedPartnerAddress = chatPartnerAddress.toLowerCase();
@@ -401,9 +402,9 @@ async function saveMessageToLocalCache(chatPartnerAddress, message) {
 
 
 async function loadMessagesForChat(chatAddress) {
-    if (!localEncryptionKey) {
-        console.warn("Cannot load messages, local encryption key not available.");
-        messageListDiv.innerHTML = '<p class="system-message">Error: Local encryption key not available.</p>';
+    if (!webCryptoEncryptionKey) { // CHECK WEBCRYPTO KEY
+        console.warn("Cannot load messages, WebCrypto encryption key not available.");
+        messageListDiv.innerHTML = '<p class="system-message">Error: WebCrypto Local encryption key not available.</p>';
         return;
     }
     currentChatAddress = chatAddress.toLowerCase();
@@ -461,7 +462,7 @@ function displayMessage(message) {
 
 // --- Contact List Management ---
 async function addOrUpdateContact(contactAddress, lastMessage, timestamp) {
-    if (!localEncryptionKey) return; // Can't save without key
+    if (!webCryptoEncryptionKey) return; // CHECK WEBCRYPTO KEY // Can't save without key
 
     const normalizedContactAddress = contactAddress.toLowerCase();
     if (normalizedContactAddress === currentUserAddress.toLowerCase()) return; // Don't add self to contacts
@@ -510,8 +511,8 @@ async function addOrUpdateContact(contactAddress, lastMessage, timestamp) {
 }
 
 async function loadContactsFromCache() {
-    if (!currentUserAddress || !localEncryptionKey) {
-        contactListDiv.innerHTML = '<p class="system-message">Connect wallet to see contacts.</p>';
+    if (!currentUserAddress || !webCryptoEncryptionKey) { // CHECK WEBCRYPTO KEY
+        contactListDiv.innerHTML = '<p class="system-message">Connect wallet to see contacts (key unavailable).</p>';
         return;
     }
     const contactsKey = `contacts_${currentUserAddress.toLowerCase()}`;
