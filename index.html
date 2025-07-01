@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-T">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Contacts</h2>
+                <button id="connectWalletBtn" class="glow-button">Connect Wallet</button>
+            </div>
+            <div id="userInfo" class="user-info" style="display: none;">
+                <p><strong>Address:</strong> <span id="userAddress"></span></p>
+                <p><strong>Network:</strong> <span id="networkName"></span> (<span id="chainId"></span>)</p>
+            </div>
+            <div id="contactList" class="contact-list">
+                <!-- Contacts will be listed here -->
+            </div>
+        </aside>
+        <main class="chat-area">
+            <header class="chat-header">
+                <h3 id="chattingWith">Select a chat</h3>
+                <button id="clearCacheBtn" class="glow-button-small" style="display: none;">Clear Cache</button>
+            </header>
+            <div id="messageList" class="message-list">
+                <!-- Messages will appear here -->
+            </div>
+            <footer class="chat-footer">
+                <input type="text" id="recipientAddressInput" placeholder="Recipient Address">
+                <textarea id="messageInput" placeholder="Type your message..."></textarea>
+                <button id="sendMessageBtn" class="glow-button">Send</button>
+            </footer>
+        </main>
+    </div>
+    <div id="qrCodeModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>Scan QR Code to connect mobile wallet (placeholder)</p>
+            <div id="qrCodeContainer">
+                <!-- QR Code will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script src="https://unpkg.com/localforage@1.10.0/dist/localforage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
